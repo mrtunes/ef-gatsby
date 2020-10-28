@@ -38,11 +38,11 @@ const Layout = ({ children }) => {
                   <Nav.Link
                     as={Link}
                     to={item.url}
+                    activeStyle={{ textDecoration: "underline" }}
+                    partiallyActive={true}
                     style={{
                       fontSize: "1.5rem",
                       color: "black",
-                      textDecoration:
-                        item.url === pathname ? "underline" : "none",
                     }}
                   >
                     {item.label}
