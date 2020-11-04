@@ -8,6 +8,7 @@ exports.createPages = async ({ graphql, actions }) => {
     data: {
       allWpPage: { nodes: allPages },
       allWpPost: { nodes: allPosts, totalCount },
+      allWpRelease: { nodes: allReleases },
     },
   } = await graphql(`
     query {
@@ -22,9 +23,15 @@ exports.createPages = async ({ graphql, actions }) => {
         }
         totalCount
       }
+      allWpRelease {
+        nodes {
+          uri
+        }
+      }
     }
   `)
 
+  // Create all pages
   const pageTemplate = path.resolve(`./src/templates/page-template.js`)
 
   allPages.forEach(page => {
@@ -37,6 +44,7 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
+  // Create pages for each post
   const postTemplate = path.resolve(`./src/templates/post-template.js`)
 
   allPosts.forEach(post => {
@@ -49,7 +57,7 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
-  // Create blog post list pages
+  // Create pages for blog post list
   const postsPerPage = 5
   const numPages = Math.ceil(totalCount / postsPerPage)
 
@@ -62,6 +70,19 @@ exports.createPages = async ({ graphql, actions }) => {
         skip: i * postsPerPage,
         numPages,
         currentPage: i + 1,
+      },
+    })
+  })
+
+  // Create pages for each release
+  const releaseTemplate = path.resolve(`./src/templates/release-template.js`)
+
+  allReleases.forEach(release => {
+    createPage({
+      path: release.uri,
+      component: slash(releaseTemplate),
+      context: {
+        uri: release.uri,
       },
     })
   })
