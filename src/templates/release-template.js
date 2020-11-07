@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
+import Img from "gatsby-image"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -11,7 +12,13 @@ export const query = graphql`
       date(formatString: "MMMM D, YYYY")
       featuredImage {
         node {
-          link
+          localFile {
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
         }
       }
       release {
@@ -40,9 +47,8 @@ const ReleaseTemplate = ({ data }) => {
       <p>Released on {release.date}</p>
 
       <div style={{ maxWidth: 400 }}>
-        <img
-          src={release.featuredImage.node.link}
-          style={{ objectFit: "scale-down", width: "100%" }}
+        <Img
+          fluid={release.featuredImage.node.localFile.childImageSharp.fluid}
         />
         <div
           dangerouslySetInnerHTML={{ __html: release.release.bandcampEmbed }}

@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
+import Img from "gatsby-image"
 import { Container, Row, Col } from "react-bootstrap"
 
 import Layout from "../components/layout"
@@ -17,7 +18,13 @@ export const query = graphql`
         }
         featuredImage {
           node {
-            link
+            localFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }
@@ -36,10 +43,12 @@ const IndexPage = ({ data }) => {
         <Row>
           {allReleases.map(release => (
             <Col sm={12} md={6} lg={4} key={release.title} className="mb-3">
-              <img
-                src={release.featuredImage.node.link}
-                style={{ objectFit: "scale-down", width: "100%" }}
+              <Img
+                fluid={
+                  release.featuredImage.node.localFile.childImageSharp.fluid
+                }
               />
+
               <Link to={release.uri}>{release.title}</Link>
             </Col>
           ))}

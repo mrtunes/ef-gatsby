@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
+import Img from "gatsby-image"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -12,16 +13,27 @@ export const query = graphql`
       content
       featuredImage {
         node {
-          link
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 300) {
+                ...GatsbyImageSharpFluid
+                ...GatsbyImageSharpFluidLimitPresentationSize
+              }
+            }
+          }
         }
       }
       release {
         releaseDate
         recordLabel
-        spotifyUrl
         appleUrl
-        youtubeUrl
+        bandcampUrl
         discogsUrl
+        facebookUrl
+        mp3Url
+        soundcloudUrl
+        spotifyUrl
+        youtubeUrl
       }
     }
   }
@@ -34,13 +46,10 @@ const PostTemplate = ({ data }) => {
     <Layout>
       <SEO title={post.title} />
 
-      <h1>{post.title}</h1>
+      <h2>{post.title}</h2>
       <p>{post.date}</p>
       {post.featuredImage && (
-        <img
-          src={post.featuredImage.node.link}
-          style={{ maxHeight: 300, width: "100%", objectFit: "scale-down" }}
-        />
+        <Img fluid={post.featuredImage.node.localFile.childImageSharp.fluid} />
       )}
       <div dangerouslySetInnerHTML={{ __html: post.content }} />
 
@@ -49,20 +58,48 @@ const PostTemplate = ({ data }) => {
           <p>
             Released: {post.release.releaseDate} on {post.release.recordLabel}
           </p>
-          <h3>Listen to this release on:</h3>
+          <h4>Listen to this release on:</h4>
           <ul>
-            <li>
-              <a href={post.release.spotifyUrl}>Spotify</a>
-            </li>
-            <li>
-              <a href={post.release.appleUrl}>Apple Music</a>
-            </li>
-            <li>
-              <a href={post.release.youtubeUrl}>YouTube</a>
-            </li>
-            <li>
-              <a href={post.release.discogsUrl}>Discogs</a>
-            </li>
+            {post.release.spotifyUrl && (
+              <li>
+                <a href={post.release.spotifyUrl}>Spotify</a>
+              </li>
+            )}
+            {post.release.appleUrl && (
+              <li>
+                <a href={post.release.appleUrl}>Apple Music</a>
+              </li>
+            )}
+            {post.release.youtubeUrl && (
+              <li>
+                <a href={post.release.youtubeUrl}>YouTube</a>
+              </li>
+            )}
+            {post.release.bandcampUrl && (
+              <li>
+                <a href={post.release.bandcampUrl}>Bandcamp</a>
+              </li>
+            )}
+            {post.release.soundcloudUrl && (
+              <li>
+                <a href={post.release.soundcloudUrl}>SoundCloud</a>
+              </li>
+            )}
+            {post.release.discogsUrl && (
+              <li>
+                <a href={post.release.discogsUrl}>Discogs</a>
+              </li>
+            )}
+            {post.release.facebookUrl && (
+              <li>
+                <a href={post.release.facebookUrl}>Facebook</a>
+              </li>
+            )}
+            {post.release.mp3Url && (
+              <li>
+                <a href={post.release.mp3Url}>Direct Download</a>
+              </li>
+            )}
           </ul>
         </div>
       )}
