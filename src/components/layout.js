@@ -1,13 +1,8 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
-import { Nav, Container, Row, Col } from "react-bootstrap"
-
-import Header from "./header"
+import { Navbar, Nav, Container, Row, Col } from "react-bootstrap"
 
 const Layout = ({ children }) => {
-  const pathname =
-    typeof window !== "undefined" ? window.location.pathname : null
-
   const { allWpMenu } = useStaticQuery(graphql`
     query MenuItems {
       allWpMenu {
@@ -27,31 +22,49 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Header />
-
       <Container fluid>
         <Row>
-          <Col sm={3}>
-            <Nav defaultActiveKey="/" className="flex-column">
-              {menuItems.map(item => (
-                <Nav.Item className="py-2" key={item.url}>
-                  <Nav.Link
-                    as={Link}
-                    to={item.url}
-                    activeStyle={{ textDecoration: "underline" }}
-                    partiallyActive={true}
-                    style={{
-                      fontSize: "1.5rem",
-                      color: "black",
-                    }}
-                  >
-                    {item.label}
-                  </Nav.Link>
-                </Nav.Item>
-              ))}
-            </Nav>
+          <Col md={3} xl={2}>
+            <Navbar expand="md" className="d-flex flex-md-column">
+              <Navbar.Brand>
+                <Link
+                  to="/"
+                  style={{
+                    fontSize: "1.7rem",
+                    fontWeight: 500,
+                    color: "black",
+                    textDecoration: "none",
+                  }}
+                >
+                  Elliott Fienberg
+                </Link>
+              </Navbar.Brand>
+              <Navbar.Toggle aria-controls="navbar-nav" />
+
+              <Navbar.Collapse id="navbar-nav">
+                <Nav defaultActiveKey="/" className="flex-column">
+                  {menuItems.map(item => (
+                    <Nav.Item className="py-2" key={item.url}>
+                      <Nav.Link
+                        as={Link}
+                        to={item.url}
+                        activeStyle={{ textDecoration: "underline" }}
+                        partiallyActive={true}
+                        style={{
+                          fontSize: "1.5rem",
+                          color: "black",
+                        }}
+                      >
+                        {item.label}
+                      </Nav.Link>
+                    </Nav.Item>
+                  ))}
+                </Nav>
+              </Navbar.Collapse>
+            </Navbar>
           </Col>
-          <Col>
+
+          <Col className="my-3">
             <main>{children}</main>
           </Col>
         </Row>

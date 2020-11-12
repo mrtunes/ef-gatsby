@@ -20,8 +20,9 @@ export const query = graphql`
           node {
             localFile {
               childImageSharp {
-                fluid {
+                fluid(maxWidth: 250) {
                   ...GatsbyImageSharpFluid
+                  ...GatsbyImageSharpFluidLimitPresentationSize
                 }
               }
             }
@@ -42,7 +43,7 @@ const IndexPage = ({ data }) => {
       <Container>
         <Row>
           {allReleases.map(release => (
-            <Col sm={12} md={6} lg={4} key={release.title} className="mb-3">
+            <Col xs={6} md={4} xl={3} key={release.title} className="mb-4">
               <Img
                 fluid={
                   release.featuredImage.node.localFile.childImageSharp.fluid

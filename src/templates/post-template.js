@@ -47,9 +47,13 @@ const PostTemplate = ({ data }) => {
       <SEO title={post.title} />
 
       <h2>{post.title}</h2>
-      <p>{post.date}</p>
+      <p className="text-muted">{post.date}</p>
+
       {post.featuredImage && (
-        <Img fluid={post.featuredImage.node.localFile.childImageSharp.fluid} />
+        <Img
+          fluid={post.featuredImage.node.localFile.childImageSharp.fluid}
+          className="mb-3"
+        />
       )}
       <div dangerouslySetInnerHTML={{ __html: post.content }} />
 

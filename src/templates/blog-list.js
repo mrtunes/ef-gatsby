@@ -35,9 +35,11 @@ const BlogList = ({ data, pageContext }) => {
         const { uri, title, date, excerpt } = post
 
         return (
-          <div key={uri}>
-            <Link to={`/blog${uri}`}>{title}</Link>
-            <p>{date}</p>
+          <div key={uri} className="py-2">
+            <h4>
+              <Link to={`/blog${uri}`}>{title}</Link>
+            </h4>
+            <p className="text-muted">{date}</p>
             <div dangerouslySetInnerHTML={{ __html: excerpt }} />
           </div>
         )
