@@ -1,6 +1,9 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
-import { Navbar, Nav, Container, Row, Col } from "react-bootstrap"
+import { Navbar, Nav, Container, Row, Col, Button } from "react-bootstrap"
+import { motion } from "framer-motion"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSpotify, faBandcamp } from "@fortawesome/free-brands-svg-icons"
 
 const Layout = ({ children }) => {
   const { allWpMenu } = useStaticQuery(graphql`
@@ -19,6 +22,11 @@ const Layout = ({ children }) => {
   `)
 
   const menuItems = allWpMenu.nodes[0].menuItems.nodes
+
+  const variants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  }
 
   return (
     <>
@@ -59,13 +67,35 @@ const Layout = ({ children }) => {
                       </Nav.Link>
                     </Nav.Item>
                   ))}
+
+                  <Nav.Item>
+                    <Button
+                      variant="outline-dark"
+                      size="sm"
+                      className="mr-2"
+                      href="https://spoti.fi/2TRXcJ6"
+                      target="_blank"
+                    >
+                      <FontAwesomeIcon icon={faSpotify} size="lg" />
+                    </Button>
+                    <Button
+                      variant="outline-dark"
+                      size="sm"
+                      href="https://elliottfienberg.bandcamp.com/"
+                      target="_blank"
+                    >
+                      <FontAwesomeIcon icon={faBandcamp} size="lg" />
+                    </Button>
+                  </Nav.Item>
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
           </Col>
 
           <Col className="my-3">
-            <main>{children}</main>
+            <motion.div initial="hidden" animate="visible" variants={variants}>
+              <main>{children}</main>
+            </motion.div>
           </Col>
         </Row>
       </Container>

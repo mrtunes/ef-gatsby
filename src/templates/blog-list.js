@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
+import { motion } from "framer-motion"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -26,22 +27,37 @@ const BlogList = ({ data, pageContext }) => {
   const prevPage = currentPage - 1 === 1 ? "" : (currentPage - 1).toString()
   const nextPage = (currentPage + 1).toString()
 
+  const variants = {
+    visible: i => ({
+      opacity: 1,
+      transition: {
+        delay: i * 0.1,
+      },
+    }),
+    hidden: { opacity: 0 },
+  }
+
   return (
     <Layout>
       <SEO title="Blog" />
 
-      <h1>Blog</h1>
-      {posts.map(post => {
+      {posts.map((post, index) => {
         const { uri, title, date, excerpt } = post
 
         return (
-          <div key={uri} className="py-2">
+          <motion.div
+            custom={index}
+            animate="visible"
+            variants={variants}
+            key={uri}
+            className="py-2"
+          >
             <h4>
               <Link to={`/blog${uri}`}>{title}</Link>
             </h4>
             <p className="text-muted">{date}</p>
             <div dangerouslySetInnerHTML={{ __html: excerpt }} />
-          </div>
+          </motion.div>
         )
       })}
 
