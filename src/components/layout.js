@@ -3,7 +3,11 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 import { Navbar, Nav, Container, Row, Col, Button } from "react-bootstrap"
 import { motion } from "framer-motion"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSpotify, faBandcamp } from "@fortawesome/free-brands-svg-icons"
+import {
+  faSpotify,
+  faBandcamp,
+  faSoundcloud,
+} from "@fortawesome/free-brands-svg-icons"
 
 const Layout = ({ children }) => {
   const { allWpMenu } = useStaticQuery(graphql`
@@ -72,7 +76,7 @@ const Layout = ({ children }) => {
                     <Button
                       variant="outline-dark"
                       size="sm"
-                      className="mr-2"
+                      className="mr-1"
                       href="https://spoti.fi/2TRXcJ6"
                       target="_blank"
                     >
@@ -81,10 +85,19 @@ const Layout = ({ children }) => {
                     <Button
                       variant="outline-dark"
                       size="sm"
+                      className="mr-1"
                       href="https://elliottfienberg.bandcamp.com/"
                       target="_blank"
                     >
                       <FontAwesomeIcon icon={faBandcamp} size="lg" />
+                    </Button>
+                    <Button
+                      variant="outline-dark"
+                      size="sm"
+                      href="https://soundcloud.com/fienberg"
+                      target="_blank"
+                    >
+                      <FontAwesomeIcon icon={faSoundcloud} size="lg" />
                     </Button>
                   </Nav.Item>
                 </Nav>
