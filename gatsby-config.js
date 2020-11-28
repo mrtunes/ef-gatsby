@@ -10,7 +10,7 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress-experimental`,
       options: {
-        url: "http://elliottfienberg.com/graphql",
+        url: `http://elliottfienberg.com/graphql`,
         schema: {
           typePrefix: `Wp`,
         },
