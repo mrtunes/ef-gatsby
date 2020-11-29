@@ -34,7 +34,7 @@ export const query = graphql`
   }
 `
 
-const IndexPage = ({ data }) => {
+const ReleasesPage = ({ data }) => {
   const allReleases = data.allWpRelease.nodes
 
   const variants = {
@@ -70,7 +70,7 @@ const IndexPage = ({ data }) => {
                       }
                     />
                   </motion.div>
-                  <p>{release.title}</p>
+                  <p className="mt-1">{release.title}</p>
                 </Link>
               </motion.div>
             </Col>
@@ -81,4 +81,4 @@ const IndexPage = ({ data }) => {
   )
 }
 
-export default IndexPage
+export default ReleasesPage
