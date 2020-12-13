@@ -53,7 +53,7 @@ const BlogList = ({ data, pageContext }) => {
             className="py-2"
           >
             <h4>
-              <Link to={`/blog${uri}`}>{title}</Link>
+              <Link to={uri}>{title}</Link>
             </h4>
             <p className="text-muted">{date}</p>
             <div dangerouslySetInnerHTML={{ __html: excerpt }} />
