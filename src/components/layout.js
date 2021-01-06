@@ -105,7 +105,7 @@ const Layout = ({ children }) => {
             </Navbar>
           </Col>
 
-          <Col className="my-3">
+          <Col className="my-3 col-md-8">
             <motion.div initial="hidden" animate="visible" variants={variants}>
               <main>{children}</main>
             </motion.div>
