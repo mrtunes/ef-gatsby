@@ -15,7 +15,7 @@ export const query = graphql`
         title
         date(formatString: "MMMM D, YYYY")
         release {
-          bandcampEmbed
+        bandcampEmbed
         }
         featuredImage {
           node {

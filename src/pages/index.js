@@ -9,7 +9,7 @@ import SEO from "../components/seo"
 
 export const query = graphql`
   query {
-    allWpRelease(limit: 6) {
+    allWpRelease(limit: 3) {
       nodes {
         uri
         title
@@ -52,13 +52,21 @@ const IndexPage = ({ data }) => {
       <SEO />
 
       <motion.div custom="0" animate="visible" variants={variants}>
-        <h3 className="p-4 text-center">Expanding space with sound</h3>
+  
+      <h3 className="p-4 text-center">Fresh New Music Every Week</h3>
+     
       </motion.div>
 
       <motion.div custom="1" animate="visible" variants={variants}>
         <Container>
+ <p>Every week new music flows through the system. <br />Top listeners do best by subscribing to the Sunday Bagel for warm deliveries. 
+
+          </p>
           <h5>Latest Releases</h5>
           <Row>
+
+
+
             {latestReleases.map(release => (
               <Col xs={6} md={4} key={release.uri} className="mt-2 mb-3">
                 <Link to={release.uri}>
@@ -85,24 +93,13 @@ const IndexPage = ({ data }) => {
         <Container className="my-4">
           <h4>Stay In Touch</h4>
           <p>
-            Sign up to receive my newsletter, the Sunday Bagel and get the
-            latest music releases, playlists and reviews.
+            Sign up to receive the Sunday Bagel Newsletter and get the
+            latest music releases, playlists and reviews from the source. 
           </p>
 
-          <Form
-            action="https://mrtunes.us1.list-manage.com/subscribe/post?u=f1f7a1f34a5896e1092049121&amp;id=c4ba69fda0"
-            method="POST"
-          >
-            <Form.Row>
-              <Col>
-                <Form.Control required type="email" placeholder="Your email" />
-              </Col>
+          <iframe src="https://efnbrg.substack.com/embed" width="100%" height="320" frameborder="0" scrolling="no"></iframe>
 
-              <Col>
-                <Button type="submit">Subscribe</Button>
-              </Col>
-            </Form.Row>
-          </Form>
+           
         </Container>
       </motion.div>
     </Layout>

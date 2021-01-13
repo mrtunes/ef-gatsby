@@ -30,6 +30,7 @@ export const query = graphql`
         soundcloudUrl
         spotifyUrl
         youtubeUrl
+        genre
       }
       content
     }
@@ -56,7 +57,7 @@ const ReleaseTemplate = ({ data }) => {
       </div>
 
       <div dangerouslySetInnerHTML={{ __html: release.content }} />
-
+      
       <div>
         <p>Save on:</p>
         <ul>
