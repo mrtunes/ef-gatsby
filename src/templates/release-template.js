@@ -91,11 +91,7 @@ const ReleaseTemplate = ({ data }) => {
               <a href={release.release.facebookUrl}>Facebook</a>
             </li>
           )}
-          {release.release.mp3Url && (
-            <li>
-              <a href={release.release.mp3Url}>Direct Download</a>
-            </li>
-          )}
+         
         </ul>
       </div>
     </Layout>
