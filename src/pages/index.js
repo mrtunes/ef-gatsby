@@ -9,7 +9,7 @@ import SEO from "../components/seo"
 
 export const query = graphql`
   query {
-    allWpRelease(limit: 3) {
+    allWpRelease(limit: 6) {
       nodes {
         uri
         title
