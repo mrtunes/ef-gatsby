@@ -40,6 +40,22 @@ export const query = graphql`
 const ReleaseTemplate = ({ data }) => {
   const release = data.wpRelease
 
+  const checkSoundCloudUrl = () => {
+    if (release.release.soundcloudUrl) {
+      return (
+        <li>
+          <a href={release.release.soundcloudUrl}>SoundCloud</a>
+        </li>
+      )
+    } else {
+      return (
+        <li>
+          <a href={release.release.bandcampUrl}>Bandcamp</a>
+        </li>
+      )
+    }
+  }
+
   return (
     <Layout>
       <SEO title={release.title} />
@@ -57,7 +73,7 @@ const ReleaseTemplate = ({ data }) => {
       </div>
 
       <div dangerouslySetInnerHTML={{ __html: release.content }} />
-      
+
       <div>
         <p>Save on:</p>
         <ul>
@@ -76,22 +92,12 @@ const ReleaseTemplate = ({ data }) => {
               <a href={release.release.youtubeUrl}>YouTube</a>
             </li>
           )}
-          {release.release.bandcampUrl && (
-            <li>
-              <a href={release.release.bandcampUrl}>Bandcamp</a>
-            </li>
-          )}
-          {release.release.soundcloudUrl && (
-            <li>
-              <a href={release.release.soundcloudUrl}>SoundCloud</a>
-            </li>
-          )}
+          {checkSoundCloudUrl()}
           {release.release.facebookUrl && (
             <li>
               <a href={release.release.facebookUrl}>Facebook</a>
             </li>
           )}
-         
         </ul>
       </div>
     </Layout>
