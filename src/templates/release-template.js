@@ -22,6 +22,7 @@ export const query = graphql`
         }
       }
       release {
+        soundcloudEmbed
         bandcampEmbed
         appleUrl
         bandcampUrl
@@ -56,6 +57,14 @@ const ReleaseTemplate = ({ data }) => {
     }
   }
 
+  const embedCode = () => {
+    if (release.release.soundcloudEmbed) {
+      return release.release.soundcloudEmbed
+    } else {
+      return release.release.bandcampEmbed
+    }
+  }
+
   return (
     <Layout>
       <SEO title={release.title} />
@@ -67,9 +76,7 @@ const ReleaseTemplate = ({ data }) => {
         <Img
           fluid={release.featuredImage.node.localFile.childImageSharp.fluid}
         />
-        <div
-          dangerouslySetInnerHTML={{ __html: release.release.bandcampEmbed }}
-        />
+        <div dangerouslySetInnerHTML={{ __html: embedCode() }} />
       </div>
 
       <div dangerouslySetInnerHTML={{ __html: release.content }} />
