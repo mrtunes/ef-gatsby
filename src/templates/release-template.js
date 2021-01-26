@@ -41,22 +41,6 @@ export const query = graphql`
 const ReleaseTemplate = ({ data }) => {
   const release = data.wpRelease
 
-  const checkSoundCloudUrl = () => {
-    if (release.release.soundcloudUrl) {
-      return (
-        <li>
-          <a href={release.release.soundcloudUrl}>SoundCloud</a>
-        </li>
-      )
-    } else {
-      return (
-        <li>
-          <a href={release.release.bandcampUrl}>Bandcamp</a>
-        </li>
-      )
-    }
-  }
-
   const embedCode = () => {
     if (release.release.soundcloudEmbed) {
       return release.release.soundcloudEmbed
@@ -99,7 +83,17 @@ const ReleaseTemplate = ({ data }) => {
               <a href={release.release.youtubeUrl}>YouTube</a>
             </li>
           )}
-          {checkSoundCloudUrl()}
+          {release.release.soundcloudUrl && (
+            <li>
+              <a href={release.release.soundcloudUrl}>SoundCloud</a>
+            </li>
+          )}
+          {release.release.bandcampUrl && (
+            <li>
+              <a href={release.release.bandcampUrl}>Bandcamp</a>
+            </li>
+          )}
+
           {release.release.facebookUrl && (
             <li>
               <a href={release.release.facebookUrl}>Facebook</a>
