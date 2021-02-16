@@ -23,6 +23,7 @@ export const query = graphql`
       }
       release {
         soundcloudEmbed
+        releaseDate
         bandcampEmbed
         appleUrl
         bandcampUrl
@@ -54,7 +55,7 @@ const ReleaseTemplate = ({ data }) => {
       <SEO title={release.title} />
 
       <h2>{release.title}</h2>
-      <p>Released on {release.date}</p>
+      <p>Released on {release.release.releaseDate}</p>
 
       <div style={{ maxWidth: 400 }}>
         <Img

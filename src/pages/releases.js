@@ -1,9 +1,8 @@
-import React from "react"
+import React, { useState } from 'react';
 import { graphql, Link } from "gatsby"
 import Img from "gatsby-image"
 import { Container, Row, Col } from "react-bootstrap"
 import { motion } from "framer-motion"
-
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
@@ -16,6 +15,7 @@ export const query = graphql`
         date(formatString: "MMMM D, YYYY")
         release {
         bandcampEmbed
+        genre
         }
         featuredImage {
           node {
@@ -35,7 +35,7 @@ export const query = graphql`
 `
 
 const ReleasesPage = ({ data }) => {
-  const allReleases = data.allWpRelease.nodes
+  const newReleases = data.allWpRelease.nodes
 
   const variants = {
     visible: i => ({
@@ -46,13 +46,47 @@ const ReleasesPage = ({ data }) => {
     }),
     hidden: { opacity: 0 },
   }
+  const [value, setValue] = useState("")
+
+   const allReleases =
+    value === ""
+      ? newReleases
+      : newReleases.filter(post =>
+          post.release.genre ? post.release.genre.includes(value) : ""
+        )
 
   return (
     <Layout>
       <SEO title="Music Releases" />
 
       <Container>
+          <Row>
+          <Col xs={8}></Col>
+
+          <Col xs={3} className="mb-2">
+          <select
+              name="cars"
+              id="cars"
+              value={value}
+              onChange={e => {
+                setValue(e.currentTarget.value)
+              }}
+            >
+             <option value="">All Styles</option>
+              <option value="Ambient">Ambient</option>
+                   <option value="Global Groove">Global Groove</option>
+              <option value="House">House</option>
+         
+              
+             
+            </select>
+          </Col>
+        </Row>
+
+
+
         <Row>
+
           {allReleases.map((release, index) => (
             <Col xs={6} md={4} xl={3} key={index} className="mb-4">
               <motion.div custom={index} animate="visible" variants={variants}>

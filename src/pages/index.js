@@ -16,6 +16,9 @@ export const query = graphql`
         date(formatString: "MMMM D, YYYY")
         release {
           bandcampEmbed
+          soundcloudEmbed
+          mp3Url
+          releaseDate
         }
         featuredImage {
           node {
@@ -88,7 +91,8 @@ const IndexPage = ({ data }) => {
                     />
                   </motion.div>
                   <h5 className="mt-2">{release.title}</h5>
-                </Link>
+                  <p><div dangerouslySetInnerHTML={{ __html: release.release.soundcloudEmbed }} /></p>
+              </Link>
               </Col>
             ))}
           </Row>
