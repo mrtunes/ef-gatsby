@@ -74,7 +74,9 @@ const ReleasesPage = ({ data }) => {
             >
              <option value="">All Styles</option>
               <option value="Ambient">Ambient</option>
-                   <option value="Global Groove">Global Groove</option>
+              <option value="Experimental">Experimental</option>
+              <option value="Blues">Folk & Blues</option>
+                   <option value="Groove">Groove</option>
               <option value="House">House</option>
          
               
