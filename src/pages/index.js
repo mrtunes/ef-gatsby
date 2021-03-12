@@ -9,7 +9,7 @@ import SEO from "../components/seo"
 
 export const query = graphql`
   query {
-    allWpRelease(limit: 6) {
+    allWpRelease(limit:6) {
       nodes {
         uri
         title
@@ -18,7 +18,7 @@ export const query = graphql`
           bandcampEmbed
           soundcloudEmbed
           mp3Url
-          releaseDate
+          releaseDate          
         }
         featuredImage {
           node {

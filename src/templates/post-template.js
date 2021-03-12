@@ -108,7 +108,7 @@ const PostTemplate = ({ data }) => {
         </div>
       )}
 
-      <Link to="/blog">← Back to All Post</Link>
+      <Link to="/blog">← Back to All Posts</Link>
     </Layout>
   )
 }
