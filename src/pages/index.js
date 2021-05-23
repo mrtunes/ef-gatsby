@@ -54,9 +54,9 @@ const IndexPage = ({ data }) => {
     <Layout>
       <SEO />
 
-      <motion.div custom="0" animate="visible" variants={variants}>
+       <motion.div custom="0" animate="visible" variants={variants}>
   
-      <h3 className="p-4 text-center">Fresh New Music Every Week</h3>
+     <h3 className="p-4 text-center">Music for the Planet</h3>
      
 
 
@@ -66,14 +66,19 @@ const IndexPage = ({ data }) => {
 
       <motion.div custom="1" animate="visible" variants={variants}>
         <Container>
- <p>Every week new music flows through the system. <br />Top listeners do best by subscribing to the Sunday Bagel for warm deliveries. 
+ <p>Composer, sound designer and writer, I work on a few different types of music throughout the year.  <br/><br/>
+ Here are five projects I have on the go for you at the moment (May 2021): </p>
+ <ol>
+<li>My music on <a href="http://soundcloud.com/fienberg">Soundcloud</a> or <a href="https://sptfy.com/ivW1">Spotify</a></li>
+<li>A <a href="https://anchor.fm/elliottspodcast">new podcast</a></li>
+<li>A <a href="https://www.youtube.com/channel/UCqtyhD5muPMkaPyCxFORA8g">YouTube channel</a> for live streams</li>
+<li>An <a href="https://gumroad.com/l/failurebook">eBook about creative projects</a></li>
+<li>A <a href="https://efnbrg.substack.com/">newsletter</a> to help you stay updated</li>
+ </ol>
 
-          </p>
+<p><a href="https://ko-fi.com/elliottfienberg">Buy me a coffee</a> and keep the music playing</p>        
 
-<p><b>Streaming live on Saturday, May 22nd at 9pm</b></p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/-ukX6PlLMQk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<br />
-          <h5>Some of the Latest Releases</h5>
+           {/*<h5>Some of the Latest Releases</h5> 
         
 <Row>
 
@@ -98,10 +103,10 @@ const IndexPage = ({ data }) => {
               </Link>
               </Col>
             ))}
-          </Row>
+          </Row>*/} 
         </Container>
 
-        <Container className="my-4">
+        {/*<Container className="my-4">
           <h4>Stay In Touch</h4>
           <p>
             Sign up to receive the Sunday Bagel Newsletter and get the
@@ -111,7 +116,7 @@ const IndexPage = ({ data }) => {
           <iframe src="https://efnbrg.substack.com/embed" width="100%" height="320" frameborder="0" scrolling="no"></iframe>
 
            
-        </Container>
+        </Container>*/}  
       </motion.div>
     </Layout>
   )
